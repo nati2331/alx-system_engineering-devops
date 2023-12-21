@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#Groups visitors by IP and HTTP
+log_file="access.log"
+
+awk '{count[$1" "$9]++} END {for (ip_code in count) print count[ip_code], ip_code}' "$log_file" | sort -nr
