@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
 
-# Loop from 1 to 10 and display different messages based on iteration
-n=1
+# Loop from 1 to 10 and display different messages
 
-while [ $n -le 10 ]; do
-    if [ $n -eq 4 ]; then
+call=1
+while [ $call -le 10 ];
+do
+    if [ $call -eq 4 ];
+then
         echo "bad luck"
-    elif [ $n -eq 8 ]; then
+    elif [ $call -eq 8 ];
+then
         echo "good luck"
     else
         echo "Best School"
     fi
-    ((n++))
+    call=$((call + 1))
 done
