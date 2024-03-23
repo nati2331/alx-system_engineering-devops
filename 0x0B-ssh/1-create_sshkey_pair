@@ -1,16 +1,4 @@
 #!/usr/bin/env bash
 #creates an RSA keypair
-if [ -f school ]; then
-    echo "The 'school' private key already exists. Aborting."
-    exit 1
-fi
 
-if [ -f school.pub ]; then
-    echo "The 'school.pub' public key already exists. Aborting."
-    exit 1
-fi
-
-echo "Generating public/private rsa key pair..."
 ssh-keygen -t rsa -b 4096 -C "school" -f school -N "betty"
-
-echo "RSA key pair generated successfully."
