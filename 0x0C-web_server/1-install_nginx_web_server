@@ -2,24 +2,7 @@
 # Serve a page that would return a Hello World string
 
 apt-get update
-apt-get install -y nginx
-
-# Check if Nginx is installed successfully
-if [ $? -ne 0 ]; then
-    echo "Error: Failed to install Nginx."
-    exit 1
-fi
-
-# Start Nginx
-/usr/sbin/nginx
-
-# Check if Nginx is running
-if ! pgrep -x "nginx" >/dev/null; then
-    echo "Error: Nginx failed to start."
-    exit 1
-fi
-
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
 echo "Hello World!" > /var/www/html/index.html
-
-
-/usr/sbin/nginx -s reload
+service nginx start
