@@ -1,30 +1,29 @@
 #!/usr/bin/python3
 """
-Script to print hot posts on a given Reddit subreddit.
+    script that queries the Reddit API
 """
+
 
 import requests
 
 
+base_url = 'https://www.reddit.com/'
+
+
 def top_ten(subreddit):
-    """Print the titles of the 10 hottest posts on a given subreddit."""
-    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
+    """
+        return the number of subscribers
+    """
 
-    headers = {
-        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
-    }
+    try:
+        response = requests.get(
+            url="{}/r/{}/hot.json?limit=10".format(base_url, subreddit),
+            headers={'user-agent': 'APP-NAME by REDDIT-USERNAME'},
+        )
 
-    params = {
-        "limit": 10
-    }
+        data = response.json()['data']
 
-    response = requests.get(url, headers=headers, params=params,
-                            allow_redirects=False)
-
-    if response.status_code == 404:
-        print("None")
-        return
-
-    results = response.json().get("data")
-
-    [print(c.get("data").get("title")) for c in results.get("children")]
+        for child in data['children']:
+            print(child['data']['title'])
+    except Exception:
+        print(None)
